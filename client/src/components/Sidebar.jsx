@@ -1,5 +1,5 @@
 import React from "react";
-import { useUser, useClerk } from "@clerk/clerk-react";
+import { useUser, useClerk, Protect } from "@clerk/clerk-react";
 import {
   Hash,
   House,
@@ -10,6 +10,7 @@ import {
   Scissors,
   FileText,
   Users,
+  LogOut,
 } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
@@ -41,7 +42,7 @@ const Sidebar = ({ sidebar, setSidebar }) => {
           className="w-13 rounded-full mx-auto"
         />
         <h1 className="text-center mt-1 mb-6">{user.fullName}</h1>
-        <div>
+        <div className="px-6 text-sm mt-5 text-gray-600 font-medium">
           {navItems.map(({ to, label, Icon }) => (
             <NavLink
               key={to}
@@ -56,16 +57,43 @@ const Sidebar = ({ sidebar, setSidebar }) => {
                 }`
               }
             >
-             {
-                ({isActive}) => (
-                   <>
-                     <Icon className={`w-5 h-5 mr-2 ${isActive ? "text-white" : "text-gray-600"}`} />
-                     <span>{label}</span>
-                   </>
-                )}
+              {({ isActive }) => (
+                <>
+                  <Icon
+                    className={`w-5 h-5 mr-2 ${
+                      isActive ? "text-white" : "text-gray-600"
+                    }`}
+                  />
+                  <span>{label}</span>
+                </>
+              )}
             </NavLink>
           ))}
         </div>
+      </div>
+      <div className="w-full border-t border-gray-300 p-4 px-7 flex items-center justify-between">
+        <div
+          onClick={openUserProfile}
+          className="flex gap-2 items-center cursor-pointer"
+        >
+          <img
+            src={user.imageUrl}
+            alt="User Avatar"
+            className="w-8 h-8 rounded-full"
+          />
+          <span>
+            <h1 className="text-sm font-medium">{user.fullName}</h1>
+            <p className="text-xs text-gray-500">
+              <Protect plan="premium" fallback="Free Plan">
+                Premium Plan
+              </Protect>
+            </p>
+          </span>
+        </div>
+        <LogOut
+          onClick={signOut}
+          className="w-4.5 text-gray-500 hover:text-gray-800 transition cursor-pointer"
+        />
       </div>
     </div>
   );
