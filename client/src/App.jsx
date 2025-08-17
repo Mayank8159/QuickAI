@@ -10,6 +10,7 @@ import BlogTitles from './pages/BlogTitles.jsx'
 import GenerateImages from './pages/GenerateImages.jsx'
 import RemoveBackground from './pages/RemoveBackground.jsx'
 import Community from './pages/Community.jsx'
+import Notfound from './pages/Notfound.jsx'
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
             <Route path="review-resume" element={<ReviewResume />} />
             <Route path="community" element={<Community />} />
           </Route>
+          <Route path="*" element={<Notfound />} />
         </Routes>
     </div>
   )

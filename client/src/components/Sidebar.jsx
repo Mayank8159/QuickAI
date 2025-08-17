@@ -56,8 +56,13 @@ const Sidebar = ({ sidebar, setSidebar }) => {
                 }`
               }
             >
-              <Icon className="w-5 h-5 mr-2" />
-              <span>{label}</span>
+             {
+                ({isActive}) => (
+                   <>
+                     <Icon className={`w-5 h-5 mr-2 ${isActive ? "text-white" : "text-gray-600"}`} />
+                     <span>{label}</span>
+                   </>
+                )}
             </NavLink>
           ))}
         </div>
