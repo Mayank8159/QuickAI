@@ -40,7 +40,7 @@ const Footer = () => {
                 type="email"
                 placeholder="Enter your email"
               />
-              <button className="bg-primary w-full sm:w-28 h-10 text-white rounded text-sm">
+              <button className="bg-primary w-full sm:w-28 h-10 text-white rounded text-sm cursor-pointer">
                 Subscribe
               </button>
             </div>
