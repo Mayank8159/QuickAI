@@ -11,10 +11,15 @@ const WriteArticle = () => {
   const [selectedLength, setSelectedLength] = useState(articleLength[0]);
   const [input, setInput] = useState("");
 
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    // Handle form submission
+  };
+
   return (
     <div className="h-full overflow-y-scroll p-6 flex items-start flex-wrap gap-4 text-slate-700">
       {/* left column */}
-      <form className="w-full max-w-lg p-4 bg-white rounded-lg shadow-sm border border-gray-200">
+      <form onSubmit={onSubmitHandler} className="w-full max-w-lg p-4 bg-white rounded-lg shadow-sm border border-gray-200">
         <div className="flex items-center gap-3">
           <Sparkles className="w-6 text-[#4A7Aff]" />
           <h1 className="text-xl font-semibold">Article Configuration</h1>
@@ -51,7 +56,18 @@ const WriteArticle = () => {
         </button>
       </form>
       {/* right column */}
-      <div></div>
+      <div className="w-full max-w-lg p-4 bg-white rounded-lg shadow-sm border border-gray-200 flex flex-col min-h-96 max-h-[600px]">
+        <div className="flex items-center gap-3">
+          <Edit className="w-5 h-5 text-[#4A7Aff]" />
+          <h1 className="text-xl font-semibold">Generated Article</h1>
+        </div>
+        <div className="flex flex-1 justify-center items-center">
+          <div className="text-sm flex flex-col items-center gap-5 text-gray-400">
+            <Edit className="w-9 h-9" />
+            <p>Enter a topic and click "Generate Article" to get started ...</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
